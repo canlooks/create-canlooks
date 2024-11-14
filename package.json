@@ -1,0 +1,32 @@
+{
+  "name": "create-canlooks",
+  "version": "0.0.1-alpha1",
+  "author": "C.CanLiang <canlooks@gmail.com>",
+  "description": "Create everything for canlooks",
+  "bin": {
+    "create-canlooks": "dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/canlooks/create-canlooks"
+  },
+  "homepage": "https://gitee.com/canlooks/create-canlooks",
+  "bugs": {
+    "url": "https://gitee.com/canlooks/create-canlooks/issues",
+    "email": "canlooks@gmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "shx rm -rf dist && tsc"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
