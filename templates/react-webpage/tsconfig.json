@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node10",
-    "outDir": "dist",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "skipLibCheck": true,
     "importHelpers": true,
     "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "strict": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
-    "noImplicitOverride": true
+    "noImplicitOverride": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "WebWorker"
+    ]
   },
   "include": [
     "src/**/*"
