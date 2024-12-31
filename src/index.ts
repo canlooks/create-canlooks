@@ -7,7 +7,7 @@ import inquirer from 'inquirer'
         type: 'list',
         name: 'template',
         message: 'Choose a template',
-        choices: ['react', 'vue', 'angular'],
+        choices: ['webpage', 'electron'],
     })
     console.log(12, template)
 })()
