@@ -1,14 +1,16 @@
 node_modules
-/dist
+/src
+/test
+
+tsconfig.json
+package-lock.json
 
 # local env files
 .env.local
 .env.*.local
 
 # Log files
-*.log
 npm-debug.log*
-pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 

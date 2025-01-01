@@ -31,6 +31,9 @@
   "devDependencies": {
     "@canlooks/ajax": "^4.0.4",
     "@canlooks/can-ui": "^0.0.25",
+    "@canlooks/nest": "^1.1.8",
+    "@canlooks/nest-plugin-electron": "^1.0.2",
+    "@canlooks/nest-plugin-electron-renderer": "^1.0.4",
     "@canlooks/react-router": "^0.0.13",
     "@canlooks/reactive": "^4.2.1",
     "@canlooks/utils": "^2.1.0",

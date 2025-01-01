@@ -2,14 +2,17 @@
   "name": "react-webpage",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "",
+    "dev:renderer": "vite",
     "test": "npx ts-node test/test.ts"
   },
   "devDependencies": {
     "@ant-design/icons": "^5.5.2",
     "@canlooks/ajax": "^4.0.4",
     "@canlooks/can-ui": "^0.0.25",
+    "@canlooks/nest": "^1.1.8",
+    "@canlooks/nest-plugin-electron": "^1.0.2",
+    "@canlooks/nest-plugin-electron-renderer": "^1.0.4",
     "@canlooks/reactive": "^4.2.1",
     "@canlooks/utils": "^2.1.0",
     "@emotion/react": "^11.14.0",
