@@ -1,5 +1,7 @@
 # create-canlooks
 
+## Startup
+
 ```shell
 npm create canlooks
 ```

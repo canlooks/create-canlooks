@@ -1,23 +1,31 @@
 {
   "name": "react-webpage",
   "version": "1.0.0",
+  "main": "dist/electron/main.js",
   "scripts": {
-    "dev": "",
+    "dev": "npx shx rm -rf dist/electron && tsc -p electron/tsconfig.json && electron dist/electron/main.js",
     "dev:renderer": "vite",
     "test": "npx ts-node test/test.ts"
   },
+  "dependencies": {
+    "@canlooks/ajax": "^4.0.4",
+    "@canlooks/nest": "^1.1.10",
+    "@canlooks/nest-plugin-electron": "^1.0.3",
+    "tslib": "^2.8.1"
+  },
   "devDependencies": {
     "@ant-design/icons": "^5.5.2",
-    "@canlooks/ajax": "^4.0.4",
     "@canlooks/can-ui": "^0.0.25",
-    "@canlooks/nest": "^1.1.8",
-    "@canlooks/nest-plugin-electron": "^1.0.2",
     "@canlooks/nest-plugin-electron-renderer": "^1.0.4",
+    "@canlooks/react-router": "^0.0.13",
     "@canlooks/reactive": "^4.2.1",
     "@canlooks/utils": "^2.1.0",
     "@emotion/react": "^11.14.0",
+    "@types/node": "^22.10.3",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.7.2",

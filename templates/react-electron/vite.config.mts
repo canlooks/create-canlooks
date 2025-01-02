@@ -1,12 +1,13 @@
 import {defineConfig} from 'vite'
-import path from 'path'
 
 export default defineConfig({
-    envDir: path.resolve('env'),
-    resolve: {
-        extensions: ['.tsx', '.ts', '.json']
-    },
+    base: './',
+    envDir: 'env',
     build: {
+        outDir: 'dist/renderer',
         emptyOutDir: true
+    },
+    server: {
+        port: 5188
     }
 })

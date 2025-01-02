@@ -42,6 +42,11 @@ inquirer.prompt([
     packageJson.name = name
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
 
+    // 修改README.md文件
+    const readmePath = path.join(destinationPath, 'README.md')
+    const readme = fs.readFileSync(readmePath, 'utf8')
+    fs.writeFileSync(readmePath, `# ${name}${readme}`)
+
     console.timeEnd(prefix + 'Created')
 
     console.time(prefix + 'Done')
