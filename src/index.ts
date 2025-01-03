@@ -7,7 +7,7 @@ import {execSync} from 'child_process'
 
 const prefix = '[create-canlooks] '
 
-const choices = ['react-webpage', 'react-electron'] as const
+const choices = ['react-webpage', 'react-electron', 'react-native'] as const
 
 console.log('Hi. Canlooks CLI. ૮(˶ᵔ ᵕ ᵔ˶)ა\n')
 

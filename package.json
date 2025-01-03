@@ -1,6 +1,6 @@
 {
   "name": "create-canlooks",
-  "version": "0.0.1-alpha1",
+  "version": "1.0.0",
   "author": "C.CanLiang <canlooks@gmail.com>",
   "description": "Create everything for canlooks",
   "bin": {
@@ -21,8 +21,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "shx rm -rf dist && tsc",
-    "test": "npx ts-node src/index.ts"
+    "build": "shx rm -rf dist && tsc -p tsconfig.json"
   },
   "dependencies": {
     "inquirer": "^12.3.0",
