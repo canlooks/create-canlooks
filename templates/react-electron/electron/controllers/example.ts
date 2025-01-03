@@ -1,7 +1,7 @@
 import {Action, Controller, Inject} from '@canlooks/nest'
 import type ExampleService from '../services/example'
 
-@Controller
+@Controller('example')
 export class ExampleController {
     /**
      * 一般情况下可使用更方便的同步注入
@@ -13,7 +13,7 @@ export class ExampleController {
     @Inject(() => import('../services/example'))
     private service!: ExampleService
 
-    @Action
+    @Action('hello')
     hello(): Promise<string> {
         return this.service.hello()
     }

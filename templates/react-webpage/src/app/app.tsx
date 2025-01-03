@@ -9,6 +9,7 @@ export function App() {
         <CanUI theme={{
             colors: {primary: '#1e71ec'}
         }}>
+            <Global styles={style}/>
             <AppContent/>
         </CanUI>
     )
@@ -16,12 +17,8 @@ export function App() {
 
 function AppContent() {
     return (
-        <>
-            <Global styles={style}/>
-
-            <Router>
-                <Routes routes={routes}/>
-            </Router>
-        </>
+        <Router>
+            <Routes routes={routes}/>
+        </Router>
     )
 }

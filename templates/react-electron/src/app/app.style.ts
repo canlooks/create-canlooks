@@ -9,6 +9,7 @@ export const style = css`
     html, body, .scrollbar {
         &::-webkit-scrollbar {
             width: 4px;
+            height: 4px;
         }
 
         &::-webkit-scrollbar-thumb {

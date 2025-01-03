@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "dist/electron/main.js",
   "scripts": {
-    "dev": "npx shx rm -rf dist/electron && tsc -p electron/tsconfig.json && electron dist/electron/main.js",
+    "dev": "npm run build:main && electron dist/electron/main.js",
     "dev:renderer": "vite",
+    "build": "npm run build:renderer && npm run build:main && electron-builder -c electron-builder.ts",
+    "build:main": "npx shx rm -rf dist/electron && tsc -p electron/tsconfig.json",
+    "build:renderer": "vite build",
     "test": "npx ts-node test/test.ts"
   },
   "dependencies": {
