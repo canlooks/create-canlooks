@@ -4,10 +4,10 @@ export default defineConfig({
     base: './',
     envDir: 'env',
     build: {
-        outDir: 'dist/renderer',
-        emptyOutDir: true
+        outDir: 'dist/renderer'
     },
     server: {
-        port: 5188
+        port: 5188,
+        open: true
     }
 })
