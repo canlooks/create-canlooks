@@ -34,7 +34,7 @@
     "@canlooks/nest": "^1.1.10",
     "@canlooks/nest-plugin-electron": "^1.0.3",
     "@canlooks/nest-plugin-electron-renderer": "^1.0.4",
-    "@canlooks/react-router": "^0.0.13",
+    "@canlooks/react-router": "^1.0.6",
     "@canlooks/reactive": "^4.2.1",
     "@canlooks/utils": "^2.1.0",
     "@emotion/react": "^11.14.0",
