@@ -24,7 +24,7 @@
     "build": "shx rm -rf dist && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "inquirer": "^12.3.0",
+    "inquirer": "^12.3.2",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
@@ -34,18 +34,18 @@
     "@canlooks/nest": "^1.1.10",
     "@canlooks/nest-plugin-electron": "^1.0.3",
     "@canlooks/nest-plugin-electron-renderer": "^1.0.4",
-    "@canlooks/react-router": "^1.0.6",
+    "@canlooks/react-router": "^1.0.7",
     "@canlooks/reactive": "^4.2.1",
     "@canlooks/utils": "^2.1.0",
     "@emotion/react": "^11.14.0",
-    "@types/node": "^22.10.3",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "electron": "^33.2.1",
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "electron": "^34.0.0",
     "electron-builder": "^25.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.6"
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
   }
 }
