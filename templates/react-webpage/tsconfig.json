@@ -11,8 +11,13 @@
     "experimentalDecorators": true,
     "strict": true,
     "noUnusedLocals": true,
-    "noImplicitReturns": true,
     "noImplicitOverride": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -22,6 +27,6 @@
   },
   "include": [
     "src/**/*",
-    "vite.config.ts"
+    "vite.config.mts"
   ]
 }

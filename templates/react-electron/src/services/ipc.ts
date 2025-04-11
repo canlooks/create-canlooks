@@ -10,9 +10,7 @@ import {ExampleController} from '../../electron/controllers/example'
  *     .create(controllers)
  */
 
-const controllers = {
-    example: ExampleController
-}
+const controllers = {ExampleController}
 
 export let ipcMain: Instances<typeof controllers>
 

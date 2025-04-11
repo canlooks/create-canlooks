@@ -10,7 +10,7 @@ export const Hello = RC(() => {
 
     const clickHandler = useLoading(async () => {
         await delay(1000)
-        state.msg = await ipcMain.example.hello()
+        state.msg = await ipcMain.ExampleController.hello()
     })
 
     return (

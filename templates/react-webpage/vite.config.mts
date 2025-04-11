@@ -2,17 +2,10 @@ import {defineConfig} from 'vite'
 import path from 'path'
 
 export default defineConfig({
-    base: './',
-    envDir: 'env',
+    envDir: path.resolve('env'),
     resolve: {
         alias: {
             '@': path.resolve('src'),
         }
     },
-    build: {
-        outDir: 'dist/renderer'
-    },
-    server: {
-        port: 5188
-    }
 })
