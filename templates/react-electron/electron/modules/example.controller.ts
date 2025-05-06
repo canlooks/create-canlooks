@@ -1,8 +1,8 @@
 import {Action, Controller, Inject} from '@canlooks/nest'
-import type ExampleService from '../services/example'
+import ExampleService from './example.service'
 
 @Controller('example')
-export class ExampleController {
+export default class ExampleController {
     /**
      * 一般情况下可使用更方便的同步注入
      * 例如： @Inject(ExampleService)
@@ -10,7 +10,7 @@ export class ExampleController {
      * 但如果`ExampleService`中使用了NodeJS内置模块，或其他<b>无法</b>在渲染进程使用的模块时，建议使用以下写法。
      * 使得`ExampleService`不会在渲染进程中引入；
      */
-    @Inject(() => import('../services/example'))
+    @Inject(() => import('./example.service'))
     private service!: ExampleService
 
     @Action('hello')

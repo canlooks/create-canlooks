@@ -13,7 +13,7 @@ export const style = defineCss(({mode}) => css`
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: ${mode === 'light' ? 'rgba(0, 0, 0, .3)' : 'rgba(255, 255, 255, .5)'};
+            background-color: ${mode === 'light' ? 'rgba(0, 0, 0, .3)' : 'rgba(255, 255, 255, .4)'};
             border-radius: 1000em;
 
             &:hover {

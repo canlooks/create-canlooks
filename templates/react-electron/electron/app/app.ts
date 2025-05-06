@@ -3,7 +3,7 @@ import {app as electron, BrowserWindow} from 'electron'
 import path from 'path'
 import './preload'
 
-export class App {
+export default class App {
     @Initialize
     async _() {
         await electron.whenReady()
