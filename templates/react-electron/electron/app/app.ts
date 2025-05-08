@@ -5,7 +5,11 @@ import './preload'
 
 export default class App {
     @Initialize
-    async _() {
+    async initialize() {
+        await this.openWindow()
+    }
+
+    async openWindow() {
         await electron.whenReady()
         const win = new BrowserWindow({
             width: 1280,
