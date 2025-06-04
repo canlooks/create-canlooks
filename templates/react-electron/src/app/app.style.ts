@@ -2,6 +2,10 @@ import {css} from '@emotion/react'
 import {defineCss} from '@canlooks/can-ui'
 
 export const style = defineCss(({mode}) => css`
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+    
     html, body {
         margin: 0;
     }
