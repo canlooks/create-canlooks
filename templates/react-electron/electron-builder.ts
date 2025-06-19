@@ -1,4 +1,4 @@
-import {Configuration} from 'electron-builder'
+import {Configuration} from 'app-builder-lib'
 
 export default {
     directories: {

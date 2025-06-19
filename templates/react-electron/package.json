@@ -17,25 +17,25 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@canlooks/can-ui": "^0.0.34",
-    "@canlooks/nest-plugin-electron-renderer": "^1.0.5",
+    "@canlooks/can-ui": "^0.0.44",
+    "@canlooks/nest-plugin-electron-renderer": "^1.1.4",
     "@canlooks/react-router": "^1.0.11",
     "@canlooks/reactive": "^4.2.1",
-    "@canlooks/utils": "^2.1.5",
+    "@canlooks/utils": "^2.1.6",
     "@emotion/react": "^11.14.0",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@types/node": "^22.15.2",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/node": "^24.0.3",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "color": "^5.0.0",
-    "electron": "^35.2.1",
+    "electron": "^36.5.0",
     "electron-builder": "^26.0.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "typescript": "^5.8.3",
-    "vite": "^6.3.3"
+    "vite": "^6.3.5"
   }
 }
