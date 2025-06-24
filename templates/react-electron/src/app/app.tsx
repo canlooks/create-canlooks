@@ -1,4 +1,4 @@
-import {App as CanUI} from '@canlooks/can-ui'
+import {App as CanUI, ErrorBoundary} from '@canlooks/can-ui'
 import {Global} from '@emotion/react'
 import {style} from './app.style'
 import {Router, Routes} from '@canlooks/react-router'
@@ -19,9 +19,11 @@ function AppContent() {
     return (
         <>
             <Global styles={style}/>
-            <Router mode="hash">
-                <Routes routes={routes}/>
-            </Router>
+            <ErrorBoundary>
+                <Router>
+                    <Routes routes={routes}/>
+                </Router>
+            </ErrorBoundary>
         </>
     )
 }
