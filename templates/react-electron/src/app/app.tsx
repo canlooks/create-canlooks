@@ -20,7 +20,7 @@ function AppContent() {
         <>
             <Global styles={style}/>
             <Boundary>
-                <Router>
+                <Router mode="hash">
                     <Routes routes={routes}/>
                 </Router>
             </Boundary>

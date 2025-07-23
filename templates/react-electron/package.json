@@ -11,31 +11,31 @@
     "test": "npx ts-node test/test.ts"
   },
   "dependencies": {
-    "@canlooks/ajax": "^4.0.4",
+    "@canlooks/ajax": "^4.0.9",
     "@canlooks/nest": "^1.1.11",
     "@canlooks/nest-plugin-electron": "^1.0.4",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@canlooks/can-ui": "^0.0.44",
+    "@canlooks/can-ui": "^0.0.68",
     "@canlooks/nest-plugin-electron-renderer": "^1.1.4",
-    "@canlooks/react-router": "^1.0.11",
-    "@canlooks/reactive": "^4.2.1",
+    "@canlooks/react-router": "^1.0.13",
+    "@canlooks/reactive": "^4.2.3",
     "@canlooks/utils": "^2.1.6",
     "@emotion/react": "^11.14.0",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@types/node": "^24.0.3",
+    "@types/node": "^24.0.15",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "color": "^5.0.0",
-    "electron": "^36.5.0",
+    "electron": "^37.2.3",
     "electron-builder": "^26.0.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^7.0.5"
   }
 }

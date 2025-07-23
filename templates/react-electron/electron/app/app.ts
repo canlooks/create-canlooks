@@ -3,7 +3,7 @@ import {app as electron, BrowserWindow} from 'electron'
 import path from 'path'
 import './preload'
 
-export default class App {
+export class App {
     @Initialize
     async initialize() {
         await this.openWindow()
@@ -27,8 +27,9 @@ export default class App {
         } else {
             const {createServer} = await import('vite')
             const server = await createServer()
-            const {config: {server: {port}}} = await server.listen()
-            await win.loadURL('http://localhost:' + port)
+            const {resolvedUrls} = await server.listen()
+            const {local: [url]} = resolvedUrls!
+            await win.loadURL(url)
             win.webContents.openDevTools({mode: 'undocked'})
         }
     }

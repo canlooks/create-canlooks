@@ -2,7 +2,7 @@ import {Action, Controller, Inject} from '@canlooks/nest'
 import ExampleService from './example.service'
 
 @Controller('example')
-export default class ExampleController {
+export class ExampleController {
     /**
      * 如果`ExampleService`中使用了NodeJS内置模块，或其他<b>无法</b>在渲染进程使用的模块时，建议使用以下写法。
      * @example
