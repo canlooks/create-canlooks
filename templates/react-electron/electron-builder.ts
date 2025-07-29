@@ -10,8 +10,5 @@ export default {
         oneClick: false,
         allowToChangeInstallationDirectory: true
     },
-    electronDownload: {
-        mirror: 'https://npmmirror.com/mirrors/electron/'
-    },
     compression: 'maximum'
 } as Configuration
