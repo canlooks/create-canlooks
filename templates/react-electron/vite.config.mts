@@ -11,7 +11,8 @@ export default defineConfig({
         }
     },
     build: {
-        outDir: path.resolve('dist/renderer')
+        outDir: path.resolve('dist/renderer'),
+        emptyOutDir: true
     },
     server: {
         port: 5188

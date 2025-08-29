@@ -5,7 +5,10 @@ export default defineConfig({
     envDir: path.resolve('env'),
     resolve: {
         alias: {
-            '@': path.resolve('src'),
+            '@': path.resolve('src')
         }
     },
+    build: {
+        emptyOutDir: true
+    }
 })
