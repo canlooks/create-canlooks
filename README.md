@@ -6,6 +6,8 @@
 npm create canlooks
 ```
 
+or
+
 ```shell
 npx create-canlooks
 ```
