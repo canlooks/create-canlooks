@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node10",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "skipLibCheck": true,
@@ -13,12 +13,6 @@
     "strict": true,
     "noUnusedLocals": true,
     "noImplicitOverride": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "lib": [
       "DOM",
       "DOM.Iterable",

@@ -5,11 +5,6 @@ import rendererIgnoreVitePlugin from '@canlooks/nest-plugin-electron-renderer/vi
 export default defineConfig({
     base: './',
     envDir: 'env',
-    resolve: {
-        alias: {
-            '@': path.resolve('src'),
-        }
-    },
     build: {
         outDir: path.resolve('dist/renderer'),
         emptyOutDir: true

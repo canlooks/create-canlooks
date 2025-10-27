@@ -21,14 +21,15 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "shx rm -rf dist && tsc -p tsconfig.json",
+    "build": "npx shx rm -rf dist && tsc -p tsconfig.json",
     "test": "npx ts-node src/index.ts"
   },
   "dependencies": {
-    "inquirer": "^12.3.2",
+    "inquirer": "^12.10.0",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "typescript": "^5.7.3"
+    "@types/node": "^24.9.1",
+    "typescript": "^5.9.3"
   }
 }
