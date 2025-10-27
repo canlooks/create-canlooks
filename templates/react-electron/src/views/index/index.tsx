@@ -1,8 +1,8 @@
 import {RC} from '@canlooks/reactive/react'
 import {Flex, Typography} from '@canlooks/can-ui'
 import logo from '/logo.png'
-import {exampleStore} from '@/stores/example'
-import {Hello} from '@/components/hello/hello'
+import {exampleStore} from '../../stores/example'
+import {Hello} from '../../components/hello/hello'
 
 export const Index = RC(() => {
     return (
