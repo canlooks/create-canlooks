@@ -1,9 +1,10 @@
-import {RC} from '@canlooks/reactive/react'
-import {Flex, Typography} from '@canlooks/can-ui'
-import {exampleStore} from '../../stores/example'
-import {Hello} from '../../components/hello'
+'use client'
 
-export const Index = RC(() => {
+import {Flex, Typography} from '@canlooks/can-ui'
+import {exampleStore} from '@/stores/example'
+import {Hello} from '@/components/hello'
+
+export default function AppPage() {
     return (
         <Flex height="100vh" alignItems="center" justifyContent="center">
             <Flex direction="column" alignItems="center">
@@ -13,4 +14,4 @@ export const Index = RC(() => {
             </Flex>
         </Flex>
     )
-})
+}

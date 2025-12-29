@@ -7,7 +7,7 @@ import {routes} from './routes'
 export function App() {
     return (
         <CanUI theme={{
-            mode: 'dark',
+            mode: 'light',
             colors: {primary: '#1e71ec'}
         }}>
             <AppContent/>
