@@ -21,6 +21,8 @@
       }
     ],
     "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitOverride": true,
     "noEmit": true,
     "allowJs": true,
     "incremental": true,
