@@ -1,7 +1,7 @@
 import {css} from '@emotion/react'
 import {defineCss} from '@canlooks/can-ui'
 
-export const style = defineCss(({mode}) => css`
+export const globalStyle = defineCss(({mode}) => css`
     *, *:before, *:after {
         box-sizing: border-box;
     }

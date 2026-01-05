@@ -3,8 +3,12 @@
 import {ReactNode} from 'react'
 import {App as CanUI} from '@canlooks/can-ui'
 import {Global} from '@emotion/react'
-import {style} from '@/app/style'
+import {globalStyle} from './style'
 import {RC} from '@canlooks/reactive/react'
+import {config} from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+
+config.autoAddCss = false
 
 const CanUIProvider = RC(({children}: {
     children?: ReactNode
@@ -24,7 +28,7 @@ const CanUIProvider = RC(({children}: {
 
 function GlobalStyles() {
     return (
-        <Global styles={style}/>
+        <Global styles={globalStyle}/>
     )
 }
 
