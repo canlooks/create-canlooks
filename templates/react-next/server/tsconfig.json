@@ -3,11 +3,10 @@
     "target": "ESNext",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "declaration": true,
-    "esModuleInterop": true,
     "strict": true,
+    "declaration": true,
     "skipLibCheck": true,
-    "noUnusedLocals": true
+    "esModuleInterop": true
   },
   "include": [
     "**/*"

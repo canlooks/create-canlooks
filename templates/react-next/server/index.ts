@@ -1,5 +1,5 @@
 import next from 'next'
-import {NextFunction, Request, Response} from 'express-serve-static-core'
+import {NextFunction, Request, Response} from 'express'
 import {NextBundlerOptions, NextServerOptions} from 'next/dist/server/next'
 import path from 'path'
 
