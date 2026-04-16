@@ -24,10 +24,10 @@ inquirer.prompt([
         required: true
     },
     {
-        type: 'list',
+        type: 'rawlist',
         name: 'template',
         message: 'Choose a template',
-        choices,
+        choices
     }
 ]).then(async ({name, template}: {
     name: string

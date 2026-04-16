@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "target": "ESNext",
     "module": "CommonJS",
-    "moduleResolution": "Node10",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "skipLibCheck": true,
     "importHelpers": true,
     "esModuleInterop": true,
     "strict": true,
     "noUnusedLocals": true,
-    "noImplicitOverride": true
+    "noImplicitOverride": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/**/*"
