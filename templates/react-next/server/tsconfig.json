@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "rootDir": ".",
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "bundler",
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,

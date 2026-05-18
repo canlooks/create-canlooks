@@ -1,8 +1,8 @@
 import {App as CanUI, Boundary} from '@canlooks/can-ui'
 import {Global} from '@emotion/react'
 import {style} from './app.style'
-import {Router, Routes} from '@canlooks/react-router'
-import {routes} from './routes'
+import {Router} from '@canlooks/react-router'
+import {routeEntry} from './routes'
 
 export function App() {
     return (
@@ -20,9 +20,7 @@ function AppContent() {
         <>
             <Global styles={style}/>
             <Boundary>
-                <Router>
-                    <Routes routes={routes}/>
-                </Router>
+                <Router entry={routeEntry}/>
             </Boundary>
         </>
     )

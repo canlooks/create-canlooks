@@ -1,10 +1,12 @@
 'use client'
 
 import {Flex, Typography} from '@canlooks/can-ui'
-import {exampleStore} from '@/stores/example'
 import {Hello} from '@/components/hello'
+import {useExampleStore} from '@/stores/example'
 
 export default function AppPage() {
+    const exampleStore = useExampleStore()
+
     return (
         <Flex height="100vh" alignItems="center" justifyContent="center">
             <Flex direction="column" alignItems="center">

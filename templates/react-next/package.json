@@ -4,24 +4,21 @@
   "scripts": {
     "dev": "next dev",
     "rebuild": "npm run build:client && npm run build:server",
-    "build:client": "next build --webpack",
+    "build:client": "next build",
     "build:server": "tsc -p server/tsconfig.json",
     "test": "npx ts-node test/test.ts"
   },
   "devDependencies": {
-    "@canlooks/ajax": "^5.0.3",
-    "@canlooks/can-ui": "^0.0.174",
-    "@canlooks/reactive": "^4.7.17",
-    "@canlooks/utils": "^2.1.8",
-    "@dnd-kit/react": "^0.4.0",
+    "@canlooks/ajax": "^5.0.4",
+    "@canlooks/can-ui": "^0.0.205",
+    "@canlooks/statio": "^1.0.2",
     "@emotion/react": "^11.14.0",
     "@eslint/js": "^9.39.4",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@types/color": "^4.2.1",
     "@types/express": "^5.0.6",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.8.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-transition-group": "^4.4.12",
@@ -29,12 +26,12 @@
     "dayjs": "^1.11.20",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "next": "^16.2.4",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "react-transition-group": "^4.4.5",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.2"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3"
   }
 }

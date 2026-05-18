@@ -1,9 +1,11 @@
-import {RC} from '@canlooks/reactive/react'
 import {Flex, Typography} from '@canlooks/can-ui'
-import {exampleStore} from '../../stores/example'
-import {Hello} from '../../components/hello'
+import {Hello} from '@/components/hello'
+import {memo} from 'react'
+import {useExampleStore} from '@/stores/example'
 
-export const Index = RC(() => {
+export const Index = memo(() => {
+    const exampleStore = useExampleStore()
+
     return (
         <Flex height="100vh" alignItems="center" justifyContent="center">
             <Flex direction="column" alignItems="center">

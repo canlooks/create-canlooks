@@ -1,9 +1,9 @@
 import {RootService} from './root'
-import {Module} from '@canlooks/ajax'
+import {Config} from '@canlooks/ajax'
 
-@Module({url: '/example'})
+@Config({url: '/example'})
 export class ExampleService extends RootService {
-    foo() {
+    static foo() {
         return this.post('/foo', {
             data: {}
         })

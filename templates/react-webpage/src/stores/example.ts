@@ -1,8 +1,7 @@
-import {reactive} from '@canlooks/reactive'
+import {createStore} from '@canlooks/statio'
 
-@reactive
 class ExampleStore {
     msg = 'Hello!'
 }
 
-export const exampleStore = new ExampleStore()
+export const useExampleStore = createStore(ExampleStore)

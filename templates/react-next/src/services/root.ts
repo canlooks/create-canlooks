@@ -1,5 +1,5 @@
 import {AjaxError, AjaxResponse, Config, RequestInterceptor, ResolvedConfig, ResponseInterceptor, Service} from '@canlooks/ajax'
-import {login, root} from './urls'
+import {root} from './urls'
 
 @Config({
     url: root,
@@ -11,7 +11,7 @@ export class RootService extends Service {
     @RequestInterceptor
     static requestInterceptor(config: ResolvedConfig) {
         // 排除登录接口
-        if (!config.url!.startsWith(login)) {
+        if (!config.url!.startsWith('/login')) {
             config.headers.set('token', 'this_is_an_example_for_setting_token')
         }
         return config

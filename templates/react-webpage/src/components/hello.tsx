@@ -1,13 +1,11 @@
-import {RC, useReactive} from '@canlooks/reactive/react'
 import {Button, Typography} from '@canlooks/can-ui'
+import {memo, useState} from 'react'
 
-export const Hello = RC(() => {
-    const state = useReactive({
-        msg: 'Click to say hello'
-    })
+export const Hello = memo(() => {
+    const [msg, setMsg] = useState('Click to say hello')
 
     const clickHandler = () => {
-        state.msg = 'Hello Canlooks!'
+        setMsg('Hello Canlooks!')
     }
 
     return (
@@ -18,7 +16,7 @@ export const Hello = RC(() => {
             >
                 Hello
             </Button>
-            <Typography.h2>{state.msg}</Typography.h2>
+            <Typography.h2>{msg}</Typography.h2>
         </>
     )
 })
