@@ -10,6 +10,8 @@ const prefix = '[create-canlooks] '
 const choices = [
     'react-webpage',
     'react-next',
+    'react-mui',
+    'react-mui-ssr',
     'react-electron',
     'react-native'
 ] as const
