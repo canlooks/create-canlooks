@@ -18,6 +18,7 @@ export default defineConfig([
     {
         rules: {
             'no-case-declarations': 0,
+            '@typescript-eslint/no-this-alias': 0,
             '@typescript-eslint/ban-ts-comment': 0,
             '@typescript-eslint/no-explicit-any': 0,
             '@typescript-eslint/no-unused-expressions': 0,

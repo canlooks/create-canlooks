@@ -22,6 +22,7 @@ export default defineConfig([
             '@typescript-eslint/no-explicit-any': 0,
             '@typescript-eslint/no-unused-expressions': 0,
             'react/display-name': 0,
+            'react-hooks/immutability': 0,
             'react/react-in-jsx-scope': 0,
             'react/no-unknown-property': [2, {'ignore': ['css']}]
         }
