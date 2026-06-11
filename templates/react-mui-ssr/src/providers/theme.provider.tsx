@@ -1,6 +1,6 @@
 'use client'
 
-import {createTheme, CssBaseline, InitColorSchemeScript, ThemeProvider as MuiThemeProvider} from '@mui/material'
+import {createTheme, CssBaseline, ThemeProvider as MuiThemeProvider} from '@mui/material'
 import {memo, ReactNode} from 'react'
 import {defaultFontFamily} from '@/lib/style'
 import {style} from '@/providers/global.style'
@@ -29,7 +29,6 @@ export const ThemeProvider = memo(({children}: {
 }) => {
     return (
         <MuiThemeProvider theme={theme} defaultMode="dark">
-            <InitColorSchemeScript attribute="class" defaultMode="dark"/>
             <CssBaseline enableColorScheme/>
             <GlobalStyles/>
             {children}

@@ -1,5 +1,7 @@
 import {ReactNode} from 'react'
 import {ThemeProvider} from '@/providers/theme.provider'
+import {InitColorSchemeScript} from '@mui/material'
+import EmotionProvider from '@/providers/emotion.provider'
 
 export default function AppLayout({children}: {
     children: ReactNode
@@ -13,9 +15,12 @@ export default function AppLayout({children}: {
             <link rel="icon" href="/logo.png"/>
         </head>
         <body>
-        <ThemeProvider>
-            {children}
-        </ThemeProvider>
+        <InitColorSchemeScript attribute="class"/>
+        <EmotionProvider>
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
+        </EmotionProvider>
         </body>
         </html>
     )

@@ -1,0 +1,42 @@
+{
+  "name": "react-mui",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run build:main && electron dist/electron/main.js",
+    "dev:renderer": "vite",
+    "clean": "npx shx rm -rf dist",
+    "pack": "npm run clean && npm run build:renderer && npm run build:main && electron-builder -c electron-builder.ts",
+    "build:main": "tsc -p electron/tsconfig.json",
+    "build:renderer": "vite build",
+    "test": "npx ts-node test/test.ts"
+  },
+  "devDependencies": {
+    "@canlooks/react-router": "^2.0.9",
+    "@canlooks/roost": "^0.0.1",
+    "@canlooks/roost-electron": "^0.0.1",
+    "@canlooks/roost-electron-renderer": "^0.0.1",
+    "@canlooks/statio": "^1.0.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@eslint/js": "^9.39.4",
+    "@fontsource/roboto": "^5.2.10",
+    "@mui/icons-material": "^9.0.1",
+    "@mui/material": "^9.0.1",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "color": "^5.0.3",
+    "dayjs": "^1.11.21",
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.2",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.60.1",
+    "vite": "^8.0.16"
+  }
+}
