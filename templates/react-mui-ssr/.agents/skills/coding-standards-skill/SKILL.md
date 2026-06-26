@@ -105,15 +105,19 @@ export const ComponentName = memo(() => {
 })
 ```
 
-#### Server Components / Layouts (NO 'use client')
+#### App Router Pages and Layouts (`page.tsx` / `layout.tsx`)
+
+Next.js App Router file conventions require a default export from route files. For `src/app/**/page.tsx` and `src/app/**/layout.tsx`, define the component as a local `const` and export it as the default at the bottom. Do this for both server and client route files.
+
+Client route files may still use `'use client'` and hooks, but they MUST NOT use `export const Page = ...` as the public component export. If a client route needs memoization, wrap the local const initializer with `memo(...)` and still export it only as default.
 
 ```tsx
 import {ReactNode} from 'react'
 import {ThemeProvider} from '@/providers/theme.provider'
 
-export default function AppLayout({children}: {
+const AppLayout = ({children}: {
     children: ReactNode
-}) {
+}) => {
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
@@ -130,17 +134,19 @@ export default function AppLayout({children}: {
         </html>
     )
 }
+
+export default AppLayout
 ```
 
 **Rules:**
-- **Client components**: ALWAYS use named exports (`export const X = ...`). NEVER `export default` for components.
-- **Server components / layouts**: Use `export default function` (Next.js requirement for `layout.tsx` and `page.tsx`).
-- ALWAYS wrap client components in `memo()`.
+- **Shared client components outside `src/app/**/page.tsx` and `src/app/**/layout.tsx`**: ALWAYS use named exports (`export const X = memo(...)`). NEVER `export default` for components in `src/components/`.
+- **App Router `page.tsx` and `layout.tsx` files**: ALWAYS use `const ComponentName = (...) => { ... }` followed by `export default ComponentName`. This satisfies Next.js route-file requirements while keeping component names explicit.
+- ALWAYS wrap shared client components in `memo()`. For client `page.tsx` files, memoization is optional; if used, write `const PageName = memo(() => { ... })` and `export default PageName`.
 - Event handler functions MUST use the `Handler` suffix (e.g., `clickHandler`, `changeHandler`, `submitHandler`).
 - Hooks go at the top of the component body, before any handlers or derived values.
 - NEVER use `React.FC` type annotation — let TypeScript infer the return type.
 - Add `'use client'` directive at the VERY TOP of the file when the component uses hooks, event handlers, or browser APIs.
-- `layout.tsx` is a server component (no `'use client'`). It imports client providers.
+- `layout.tsx` is usually a server component (no `'use client'`). It imports client providers.
 - Components in `src/components/` MUST use `export const X = memo(...)` pattern.
 - **Ref passing**: Components wrapping a single JSX element pass `ref` through `{...props}` — do NOT use `forwardRef`. Simply extend `ComponentProps<'div'>` (or the appropriate element) and spread `{...props}` to the root element. `forwardRef` is reserved ONLY for components that expose imperative APIs via `useImperativeHandle`.
 
@@ -253,9 +259,9 @@ export function defineCss<T>(callback: (theme: Theme) => T): () => T {
 import {ReactNode} from 'react'
 import {ThemeProvider} from '@/providers/theme.provider'
 
-export default function AppLayout({children}: {
+const AppLayout = ({children}: {
     children: ReactNode
-}) {
+}) => {
     return (
         <html lang="en" suppressHydrationWarning>
         <head>
@@ -272,10 +278,12 @@ export default function AppLayout({children}: {
         </html>
     )
 }
+
+export default AppLayout
 ```
 
 **Rules:**
-- Root layout MUST export a default function (Next.js requirement).
+- Root layout MUST define a local `const AppLayout = (...) => { ... }` and end with `export default AppLayout` (Next.js requirement).
 - `<html>` and `<body>` tags are defined in the root layout — NEVER in other components.
 - Providers are wrapped in order: ThemeProvider (contains MUI theme + CssBaseline + GlobalStyles) → {children}.
 - `<html>` MUST have `suppressHydrationWarning` for MUI dark mode SSR.
@@ -643,8 +651,8 @@ export default defineConfig([
 | Store hooks | `use<PascalCase>Store` | `useUserStore`, `useUIStore` |
 | Provider files | kebab-case `*.provider.tsx` | `theme.provider.tsx` |
 | Type declaration files | kebab-case `*.d.ts` | `user-types.d.ts`, `api-types.d.ts` |
-| React components | PascalCase (named export) | `export const UserProfile = memo(...)` |
-| Layout/page exports | default export | `export default function AppLayout(...)` |
+| Shared React components | PascalCase (named export) | `export const UserProfile = memo(...)` |
+| Layout/page components | PascalCase local const + default export | `const AppLayout = (...) => { ... }` then `export default AppLayout` |
 | Event handlers | camelCase + `Handler` suffix | `clickHandler`, `submitHandler` |
 | CSS class names (in emotion) | kebab-case | `.user-card`, `.error-message` |
 
@@ -656,10 +664,11 @@ export default defineConfig([
 
 ```
 src/app/<route-name>/
-└── page.tsx          # 'use client' + named export + styles
+└── page.tsx          # default-exported route component + styles
 ```
 
-- Page file: `export default function` or `'use client'` with `export const X = memo(() => ...)` and `export default X` (Next.js page requirement).
+- Page file: use `const PageName = () => { ... }` followed by `export default PageName` (Next.js route-file requirement).
+- Client page file: add `'use client'` at the top when hooks, event handlers, or browser APIs are used; if memoization is desired, write `const PageName = memo(() => { ... })` followed by `export default PageName`.
 - Co-locate styles in the same directory if needed.
 
 ### Adding a New Component
@@ -704,7 +713,8 @@ src/types/<type-name>.d.ts
 - ❌ Using `fetch`, `axios`, or raw HTTP calls — use `@canlooks/ajax` Service classes.
 - ❌ Using `useState`/`useReducer` for global state — use `@canlooks/statio` stores.
 - ❌ Importing from `@/types/` — types are ambient and auto-available.
-- ❌ Skipping `memo()` on components.
+- ❌ Skipping `memo()` on shared client components in `src/components/`.
+- ❌ Using named exports as the route component API in `src/app/**/page.tsx` or `src/app/**/layout.tsx` — use a local const plus `export default ComponentName`.
 - ❌ Skipping the `Handler` suffix on event handler functions.
 - ❌ Not using `'use client'` directive on client components.
 - ❌ Using `React.FC` type annotation.

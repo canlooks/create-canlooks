@@ -15,7 +15,7 @@ export default function AppLayout({children}: {
             <link rel="icon" href="/logo.png"/>
         </head>
         <body>
-        <InitColorSchemeScript attribute="class"/>
+        <InitColorSchemeScript attribute="class" defaultMode="dark"/>
         <EmotionProvider>
             <ThemeProvider>
                 {children}
