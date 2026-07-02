@@ -36,9 +36,9 @@ vpp-data-visualization/
 │   │   └── <route>/
 │   │       └── page.tsx          # Nested route pages
 │   ├── components/               # Shared/reusable components — ONE subdirectory per component
-│   │   └── <component-name>/
-│   │       ├── <component-name>.tsx       # Component implementation
-│   │       └── <component-name>.style.ts  # Co-located component styles
+│   │   └── <componentName>/
+│   │       ├── <componentName>.tsx        # Component implementation
+│   │       └── <componentName>.style.ts   # Co-located component styles
 │   ├── lib/                      # Shared library/utility code
 │   │   └── style.ts             # defineCss() helper + font family constants
 │   ├── providers/                # React context providers
@@ -85,7 +85,7 @@ vpp-data-visualization/
 
 import {memo} from 'react'
 import {Stack, Button} from '@mui/material'
-import {style} from './<name>.style'
+import {style} from './<componentName>.style'
 import {useStore} from '@/stores/<store-name>'
 
 export const ComponentName = memo(() => {
@@ -173,7 +173,7 @@ import {defineCss} from '@/lib/style'
 import {ExampleService} from '@/services/example'
 
 // 6. Relative imports (same directory)
-import {style} from './<name>.style'
+import {style} from './<componentName>.style'
 ```
 
 **Rules:**
@@ -187,7 +187,7 @@ import {style} from './<name>.style'
 
 Styles are defined in **co-located `.style.ts` files** using `@emotion/react`'s `css` template literal wrapped in `defineCss()` from `@/lib/style`.
 
-#### Component Style File (`<name>.style.ts`)
+#### Component Style File (`<componentName>.style.ts`)
 
 ```ts
 import {defineCss} from '@/lib/style'
@@ -438,7 +438,8 @@ declare namespace Example {
 - Each `.d.ts` file MUST start with the comment: `/** types内的文件无需import */`.
 - File names in `src/types/` use **kebab-case**: `user-types.d.ts`, `api-types.d.ts`.
 - The `emotion-env.d.ts` file enables the `css` prop on all JSX elements — it is REQUIRED.
-- For non-ambient shared types, define them alongside the code that uses them (not in `src/types/`).
+- ALL type declarations MUST live in `src/types/*.d.ts`. Do NOT define `type`, `interface`, `namespace`, or other reusable declaration shapes inline in components, services, stores, hooks, or utility files.
+- When a file needs a domain type, reference the ambient namespace from `src/types/*.d.ts` directly; NEVER import it from `src/types/`.
 
 ### 2.9 Custom Server
 
@@ -641,8 +642,8 @@ export default defineConfig([
 | Element | Convention | Example |
 |---|---|---|
 | Component directories (under `components/`) | kebab-case | `user-profile/`, `data-table/` |
-| Component files | kebab-case `*.tsx` | `user-profile.tsx`, `data-table.tsx` |
-| Style files | kebab-case `*.style.ts` | `user-profile.style.ts` |
+| Component files | camelCase `*.tsx` | `userProfile.tsx`, `dataTable.tsx` |
+| Style files | camelCase base name + `.style.ts` | `userProfile.style.ts`, `dataTable.style.ts` |
 | Page style files | `*.style.ts` (co-located with page) | `page.style.ts` |
 | Service files | kebab-case `*.ts` | `user-auth.ts`, `report-service.ts` |
 | Service classes | PascalCase | `UserAuthService`, `ReportService` |
@@ -675,8 +676,8 @@ src/app/<route-name>/
 
 ```
 src/components/<component-name>/
-├── <component-name>.tsx        # export const ComponentName = memo(...)
-└── <component-name>.style.ts   # export const style = defineCss(...)
+├── <componentName>.tsx         # export const ComponentName = memo(...)
+└── <componentName>.style.ts    # export const style = defineCss(...)
 ```
 
 ### Adding a New Service
@@ -713,6 +714,7 @@ src/types/<type-name>.d.ts
 - ❌ Using `fetch`, `axios`, or raw HTTP calls — use `@canlooks/ajax` Service classes.
 - ❌ Using `useState`/`useReducer` for global state — use `@canlooks/statio` stores.
 - ❌ Importing from `@/types/` — types are ambient and auto-available.
+- ❌ Declaring `type` / `interface` shapes inside components, services, stores, hooks, or utilities — all type declarations belong in `src/types/*.d.ts`.
 - ❌ Skipping `memo()` on shared client components in `src/components/`.
 - ❌ Using named exports as the route component API in `src/app/**/page.tsx` or `src/app/**/layout.tsx` — use a local const plus `export default ComponentName`.
 - ❌ Skipping the `Handler` suffix on event handler functions.
