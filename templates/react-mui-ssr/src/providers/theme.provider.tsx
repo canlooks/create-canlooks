@@ -1,12 +1,11 @@
 'use client'
 
-import {memo, ReactNode} from 'react'
+import {createContext, memo, ReactNode} from 'react'
 import {createTheme, CssBaseline, ThemeProvider as MuiThemeProvider, PaletteOptions} from '@mui/material'
 import {Global} from '@emotion/react'
 
-import {GlobalSnackbar} from '@/components/globalSnackbar/globalSnackbar'
 import {defaultFontFamily} from '@/lib/style'
-import {style} from '@/providers/global.style'
+import {style} from './global.style'
 
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
@@ -40,15 +39,27 @@ const theme = createTheme({
     }
 })
 
+const customColors = {
+    light: {
+        example: '#993300'
+    },
+    dark: {
+        example: '#cc6600'
+    }
+}
+
+export const ColorContext = createContext(customColors)
+
 export const ThemeProvider = memo(({children}: {
     children?: ReactNode
 }) => {
     return (
         <MuiThemeProvider theme={theme} defaultMode="dark">
-            <CssBaseline enableColorScheme/>
-            <GlobalStyles/>
-            {children}
-            <GlobalSnackbar/>
+            <ColorContext value={customColors}>
+                <CssBaseline enableColorScheme/>
+                <GlobalStyles/>
+                {children}
+            </ColorContext>
         </MuiThemeProvider>
     )
 })

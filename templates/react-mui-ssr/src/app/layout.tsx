@@ -2,6 +2,7 @@ import {ReactNode} from 'react'
 import {ThemeProvider} from '@/providers/theme.provider'
 import {InitColorSchemeScript} from '@mui/material'
 import EmotionProvider from '@/providers/emotion.provider'
+import {GlobalSnackbar} from '@/components/globalSnackbar/globalSnackbar'
 
 export default function AppLayout({children}: {
     children: ReactNode
@@ -19,6 +20,7 @@ export default function AppLayout({children}: {
         <EmotionProvider>
             <ThemeProvider>
                 {children}
+                <GlobalSnackbar/>
             </ThemeProvider>
         </EmotionProvider>
         </body>

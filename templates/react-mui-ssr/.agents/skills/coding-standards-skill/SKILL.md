@@ -1,10 +1,10 @@
 ---
 name: coding-standards-skill
-description: Enforces the coding standards, file structure, and code style conventions of the vpp-data-visualization project (MUI-based Canlooks Next.js template). Triggers: 'follow coding standards', 'use project conventions', 'match project style', 'create component', 'add page', 'add service', 'add store', 'new file'.
+description: Enforces the coding standards, file structure, and code style conventions of this project (MUI-based Canlooks Next.js template). Triggers: 'follow coding standards', 'use project conventions', 'match project style', 'create component', 'add page', 'add service', 'add store', 'new file'.
 ---
 
 <role>
-You are the **vpp-data-visualization coding standards enforcer**. Every file you create or modify MUST follow the conventions below. This project is a **MUI-based** Canlooks Next.js template — When in doubt, re-read this skill.
+You are the **coding standards enforcer**. Every file you create or modify MUST follow the conventions below. This project is a **MUI-based** Canlooks Next.js template — When in doubt, re-read this skill.
 </role>
 
 ---
@@ -14,7 +14,7 @@ You are the **vpp-data-visualization coding standards enforcer**. Every file you
 The project MUST maintain this directory layout:
 
 ```
-vpp-data-visualization/
+/
 ├── .env                          # Environment variables (NEXT_PUBLIC_ prefix)
 ├── .gitignore                    # Node, dist, server/*.js, IDE, OS ignores
 ├── package.json                  # Dependencies and scripts
@@ -51,7 +51,7 @@ vpp-data-visualization/
 │   ├── stores/                   # State management (@canlooks/statio)
 │   │   └── *.ts                  # One store per file, class-based
 │   └── types/                    # Ambient type declarations (NEVER import from here)
-│       ├── emotion-env.d.ts      # Emotion css prop type reference
+│       ├── emotionEnv.d.ts       # Emotion css prop type reference
 │       └── *.d.ts                # Domain types as declare namespace
 └── test/                         # Test files
     ├── tsconfig.json             # Extends root, CommonJS module
@@ -62,10 +62,12 @@ vpp-data-visualization/
 
 - **Next.js App Router routing** — routes are defined by the file system under `src/app/`. Each route folder has a `page.tsx`. Layouts use `layout.tsx`.
 - **One component per directory** — each component lives in its own subdirectory under `src/components/` with co-located `.tsx` and `.style.ts` files. NEVER place multiple components in one directory.
-- **components/** uses kebab-case subdirectory names matching the component name (e.g., `example/` → `Example` component).
+- **Source file names use camelCase**. For filenames with compound extensions, apply camelCase to the basename before the first dot: `userInfo.style.ts`, `authSession.provider.tsx`, `userTypes.d.ts`.
+- Framework- or tool-mandated fixed filenames keep their required names: `page.tsx`, `layout.tsx`, `page.style.ts`, `next.config.ts`, `eslint.config.mts`, `tsconfig.json`, `.env`, etc.
+- **components/** uses camelCase subdirectory names matching the component file basename and PascalCase component name (e.g., `userInfo/` → `userInfo.tsx` → `UserInfo` component).
 - **providers/** contains `theme.provider.tsx` (MUI theme wrapper) and `global.style.ts` (CSS reset).
-- **services/** uses class-based decorator pattern — each domain service extends `RootService`. Service files use kebab-case.
-- **stores/** uses class-based stores with `createStore()` — one store per file. Store files use kebab-case.
+- **services/** uses class-based decorator pattern — each domain service extends `RootService`. Service files use camelCase.
+- **stores/** uses class-based stores with `createStore()` — one store per file. Store files use camelCase.
 - **types/** contains `.d.ts` files with `namespace` declarations — NEVER import from `src/types/`.
 - **lib/** contains shared utilities: `style.ts` provides `defineCss()`, `defaultFontFamily`, and `defaultMonospaceFontFamily`.
 - Server compiles to CommonJS via its own `tsconfig.json`. Compiled output (`server/*.js`, `server/*.d.ts`) is gitignored.
@@ -86,7 +88,7 @@ vpp-data-visualization/
 import {memo} from 'react'
 import {Stack, Button} from '@mui/material'
 import {style} from './<componentName>.style'
-import {useStore} from '@/stores/<store-name>'
+import {useStore} from '@/stores/<storeName>'
 
 export const ComponentName = memo(() => {
     // hooks at top
@@ -166,11 +168,11 @@ import {Button, Stack, Typography} from '@mui/material'
 
 // 4. Third-party libraries (emotion, canlooks packages, etc.)
 import {css} from '@emotion/react'
-import {useExampleStore} from '@/stores/example'
+import {useExampleStore} from '@/stores/exampleStore'
 
 // 5. Internal absolute imports (@/ alias)
 import {defineCss} from '@/lib/style'
-import {ExampleService} from '@/services/example'
+import {ExampleService} from '@/services/exampleService'
 
 // 6. Relative imports (same directory)
 import {style} from './<componentName>.style'
@@ -248,6 +250,11 @@ export function defineCss<T>(callback: (theme: Theme) => T): () => T {
 - Style files export named constants (`export const style = ...`), not default exports.
 - For nested element styling, use CSS class selectors (`.nested-class`) INSIDE the emotion template literal.
 - Access MUI theme tokens via callback destructuring: `({palette: {primary, secondary}}) => ...`.
+- When writing colors, follow this priority:
+  - Plan A: use colors from the MUI theme `palette` first (`primary.main`, `secondary.main`, `text.primary`, `background.default`, etc.).
+  - Plan B: when palette tokens are close but need adjustment, use the `Color` library to calculate from an existing theme color inside `defineCss()` (for example: `Color(primary.main).alpha(0.12).string()`).
+  - Plan C: only when the color cannot be reasonably calculated or the calculation would be too complex, define a semantic color in `src/providers/theme.provider.tsx` `ColorContext`, then consume that token in styles.
+- Font sizes MUST use `rem` units. Preserve the calculation from a 16px root font size in the code; for example, a 14px font size should be written as `font-size: ${14 / 16}rem;`.
 - `next.config.ts` MUST have `compiler: { emotion: true }` for SSR compilation.
 - ESLint rule `'react/no-unknown-property': [2, {'ignore': ['css']}]` allows the `css` prop.
 - Define shared styles/font constants in `src/lib/style.ts`: `defaultFontFamily`, `defaultMonospaceFontFamily`.
@@ -322,7 +329,7 @@ export class RootService extends Service {
 }
 ```
 
-#### Domain Service (`src/services/<name>.ts`)
+#### Domain Service (`src/services/<serviceName>.ts`)
 
 ```ts
 import {RootService} from './root'
@@ -343,7 +350,7 @@ export class ExampleService extends RootService {
 **Rules:**
 - `RootService` extends `Service` from `@canlooks/ajax`.
 - Each domain service file contains ONE service class that extends `RootService`.
-- Service file names use **kebab-case**: `user-auth.ts`, `data-export.ts`.
+- Service file names use **camelCase**: `userAuth.ts`, `dataExport.ts`.
 - Service class names use **PascalCase**: `UserAuthService`, `DataExportService`.
 - Use `@Config` decorator at class level for the base URL path (relative to `root`).
 - Use `@RequestInterceptor` / `@ResponseInterceptor` for global request/response handling.
@@ -385,7 +392,7 @@ const exampleStore = useExampleStore('msg', 'updateMsg')
 - Constructor MUST accept `private set: SetStateMethod<ClassName>` for state updates.
 - Export a hook via `createStore(ClassName)`.
 - Hook names follow `use<Name>Store` convention.
-- Store file names use **kebab-case**: `user-store.ts`, `data-store.ts`.
+- Store file names use **camelCase**: `userStore.ts`, `dataStore.ts`.
 - NEVER use `useState` or `useReducer` for global/shared state — use statio stores.
 - For truly local component-only state, `useState` is acceptable.
 - When consuming a store in a component, explicitly list the properties/methods you need as string arguments to `useStore(...)`.
@@ -416,7 +423,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 ### 2.8 Type Declarations
 
 ```ts
-// src/types/emotion-env.d.ts — Emotion css prop type support (REQUIRED)
+// src/types/emotionEnv.d.ts — Emotion css prop type support (REQUIRED)
 /// <reference types="@emotion/react/types/css-prop"/>
 
 // src/types/<domain>.d.ts — domain types (ambient, NO import needed)
@@ -436,8 +443,8 @@ declare namespace Example {
 - Types in `src/types/` are **ambient declarations** — NEVER `import` or `export` from this directory.
 - Use `declare namespace` for domain type groupings.
 - Each `.d.ts` file MUST start with the comment: `/** types内的文件无需import */`.
-- File names in `src/types/` use **kebab-case**: `user-types.d.ts`, `api-types.d.ts`.
-- The `emotion-env.d.ts` file enables the `css` prop on all JSX elements — it is REQUIRED.
+- File names in `src/types/` use **camelCase**: `userTypes.d.ts`, `apiTypes.d.ts`.
+- The `emotionEnv.d.ts` file enables the `css` prop on all JSX elements — it is REQUIRED.
 - ALL type declarations MUST live in `src/types/*.d.ts`. Do NOT define `type`, `interface`, `namespace`, or other reusable declaration shapes inline in components, services, stores, hooks, or utility files.
 - When a file needs a domain type, reference the ambient namespace from `src/types/*.d.ts` directly; NEVER import it from `src/types/`.
 
@@ -641,17 +648,17 @@ export default defineConfig([
 
 | Element | Convention | Example |
 |---|---|---|
-| Component directories (under `components/`) | kebab-case | `user-profile/`, `data-table/` |
+| Component directories (under `components/`) | camelCase | `userProfile/`, `dataTable/` |
 | Component files | camelCase `*.tsx` | `userProfile.tsx`, `dataTable.tsx` |
 | Style files | camelCase base name + `.style.ts` | `userProfile.style.ts`, `dataTable.style.ts` |
 | Page style files | `*.style.ts` (co-located with page) | `page.style.ts` |
-| Service files | kebab-case `*.ts` | `user-auth.ts`, `report-service.ts` |
+| Service files | camelCase `*.ts` | `userAuth.ts`, `reportService.ts` |
 | Service classes | PascalCase | `UserAuthService`, `ReportService` |
-| Store files | kebab-case `*.ts` | `user-store.ts`, `ui-store.ts` |
+| Store files | camelCase `*.ts` | `userStore.ts`, `uiStore.ts` |
 | Store classes | PascalCase | `UserStore`, `UIStore` |
 | Store hooks | `use<PascalCase>Store` | `useUserStore`, `useUIStore` |
-| Provider files | kebab-case `*.provider.tsx` | `theme.provider.tsx` |
-| Type declaration files | kebab-case `*.d.ts` | `user-types.d.ts`, `api-types.d.ts` |
+| Provider files | camelCase base name + `.provider.tsx` | `theme.provider.tsx`, `authSession.provider.tsx` |
+| Type declaration files | camelCase base name + `.d.ts` | `userTypes.d.ts`, `apiTypes.d.ts` |
 | Shared React components | PascalCase (named export) | `export const UserProfile = memo(...)` |
 | Layout/page components | PascalCase local const + default export | `const AppLayout = (...) => { ... }` then `export default AppLayout` |
 | Event handlers | camelCase + `Handler` suffix | `clickHandler`, `submitHandler` |
@@ -664,7 +671,7 @@ export default defineConfig([
 ### Adding a New Page
 
 ```
-src/app/<route-name>/
+src/app/<routeName>/
 └── page.tsx          # default-exported route component + styles
 ```
 
@@ -675,7 +682,7 @@ src/app/<route-name>/
 ### Adding a New Component
 
 ```
-src/components/<component-name>/
+src/components/<componentName>/
 ├── <componentName>.tsx         # export const ComponentName = memo(...)
 └── <componentName>.style.ts    # export const style = defineCss(...)
 ```
@@ -683,7 +690,7 @@ src/components/<component-name>/
 ### Adding a New Service
 
 ```
-src/services/<service-name>.ts
+src/services/<serviceName>.ts
 ```
 
 - Extend `RootService`, use `@Config` decorator, static methods.
@@ -691,7 +698,7 @@ src/services/<service-name>.ts
 ### Adding a New Store
 
 ```
-src/stores/<store-name>.ts
+src/stores/<storeName>.ts
 ```
 
 - Class with `SetStateMethod<ClassName>` constructor, `createStore()` export.
@@ -699,7 +706,7 @@ src/stores/<store-name>.ts
 ### Adding New Ambient Types
 
 ```
-src/types/<type-name>.d.ts
+src/types/<typeName>.d.ts
 ```
 
 - `declare namespace` blocks, NEVER import/export, MUST start with comment.
@@ -710,6 +717,8 @@ src/types/<type-name>.d.ts
 
 - ❌ Using `export default` for components in `src/components/` — use named `export const X = memo(...)`.
 - ❌ Using inline `style={{}}` or `sx` prop — use emotion `css` prop with `defineCss`.
+- ❌ Hardcoding colors in style files before trying the MUI theme palette, `Color` calculations, or `ColorContext` semantic tokens.
+- ❌ Writing font sizes in `px` — use `rem` with the visible calculation, such as `font-size: ${14 / 16}rem;`.
 - ❌ Using CSS modules, Tailwind, SCSS, or plain CSS files.
 - ❌ Using `fetch`, `axios`, or raw HTTP calls — use `@canlooks/ajax` Service classes.
 - ❌ Using `useState`/`useReducer` for global state — use `@canlooks/statio` stores.
@@ -722,4 +731,5 @@ src/types/<type-name>.d.ts
 - ❌ Using `React.FC` type annotation.
 - ❌ Using `forwardRef` when the component just wraps a single DOM element — pass `ref` through `{...props}` instead.
 - ❌ Defining multiple exported components in one file.
+- ❌ Naming source files with kebab-case or snake_case, such as `user-info.ts`, `user-info.style.ts`, or `user_info.ts` — use camelCase (`userInfo.ts`, `userInfo.style.ts`).
 - ❌ Adding packages not in the approved technology stack without explicit instruction.
