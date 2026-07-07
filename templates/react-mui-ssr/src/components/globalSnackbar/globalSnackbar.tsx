@@ -9,7 +9,7 @@ import {useSnackbarStore} from '@/stores/snackbar'
 import {style} from './globalSnackbar.style'
 
 export const GlobalSnackbar = memo(() => {
-    const snackbarStore = useSnackbarStore('close', 'key', 'message', 'open')
+    const snackbarStore = useSnackbarStore('close', 'key', 'message', 'open', 'severity')
 
     const snackbarCloseHandler = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
@@ -37,7 +37,7 @@ export const GlobalSnackbar = memo(() => {
         >
             <Alert
                 className="global-snackbar-alert"
-                severity="error"
+                severity={snackbarStore.severity}
                 variant="filled"
                 onClose={alertCloseHandler}
             >
