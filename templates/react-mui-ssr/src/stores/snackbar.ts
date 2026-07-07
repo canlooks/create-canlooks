@@ -1,22 +1,48 @@
 import {createStore, type SetStateMethod} from '@canlooks/statio'
-import type {AlertColor} from '@mui/material/Alert'
+import {AlertColor} from '@mui/material'
+
+export type SnackbarQueueItem = {
+    key: number
+    message: string
+    open: boolean
+    severity: AlertColor
+}
+
+const maxSnackbarCount = 5
 
 class SnackbarStore {
     constructor(private set: SetStateMethod<SnackbarStore>) {
     }
 
     key = 0
-    message = ''
-    open = false
-    severity: AlertColor = 'error'
+    items: SnackbarQueueItem[] = []
 
     show(message: string, severity: AlertColor) {
-        this.set(({key}) => ({
-            key: key + 1,
-            message,
-            open: true,
-            severity
-        }))
+        this.set(({items, key}) => {
+            const nextKey = key + 1
+            const openItems = items.filter(({open}) => open)
+            const oldestOpenItem = openItems[0]
+
+            return {
+                key: nextKey,
+                items: [
+                    ...items.map((item) => (
+                        openItems.length >= maxSnackbarCount && item.key === oldestOpenItem?.key
+                            ? {
+                                ...item,
+                                open: false
+                            }
+                            : item
+                    )),
+                    {
+                        key: nextKey,
+                        message,
+                        open: true,
+                        severity
+                    }
+                ]
+            }
+        })
     }
 
     showError(message: string) {
@@ -31,8 +57,23 @@ class SnackbarStore {
         this.show(message, 'warning')
     }
 
-    close() {
-        this.set({open: false})
+    close(key: number) {
+        this.set(({items}) => ({
+            items: items.map((item) => (
+                item.key === key
+                    ? {
+                        ...item,
+                        open: false
+                    }
+                    : item
+            ))
+        }))
+    }
+
+    remove(key: number) {
+        this.set(({items}) => ({
+            items: items.filter((item) => item.key !== key)
+        }))
     }
 }
 
