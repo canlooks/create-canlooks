@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "rebuild": "npm run build:client && npm run build:server",
-    "build:client": "next build",
+    "build:client": "tsc --noEmit && next build",
     "build:server": "tsc -p server/tsconfig.json",
     "test": "npx ts-node test/test.ts"
   },
