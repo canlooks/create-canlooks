@@ -1,6 +1,6 @@
 import {AbortError, AjaxError, AjaxResponse, Config, RequestInterceptor, ResolvedConfig, ResponseInterceptor, Service, TimeoutError} from '@canlooks/ajax'
 import {root} from './urls'
-import {showSnackbarError} from '@/stores/snackbar'
+import {showSnackbarError} from '@/stores/snackbar.store'
 
 function getErrorMessage(error: AjaxError): string {
     if (error instanceof TimeoutError) {

@@ -1,4 +1,4 @@
-import {RootService} from './root'
+import {RootService} from './root.service'
 import {Config} from '@canlooks/ajax'
 
 @Config({url: '/example'})

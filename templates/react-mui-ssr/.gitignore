@@ -3,6 +3,9 @@ node_modules
 /dist
 /server/*.js
 /server/*.d.ts
+/next-env.d.ts
+/.sisyphus
+*.tsbuildinfo
 
 # local env files
 .env.local

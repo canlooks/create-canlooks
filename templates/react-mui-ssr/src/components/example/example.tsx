@@ -1,6 +1,8 @@
+'use client'
+
 import {memo} from 'react'
 import {style} from './example.style'
-import {useExampleStore} from '@/stores/example'
+import {useExampleStore} from '@/stores/example.store'
 import {Button, Stack} from '@mui/material'
 
 export const Example = memo(() => {

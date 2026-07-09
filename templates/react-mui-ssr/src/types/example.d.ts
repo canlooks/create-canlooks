@@ -4,6 +4,6 @@
 
 namespace Example {
     type Item = {
-
+        id: string
     }
 }
