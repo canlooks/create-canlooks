@@ -1,5 +1,7 @@
 node_modules
 /dist
+/.sisyphus
+*.tsbuildinfo
 
 # local env files
 .env.local
@@ -23,5 +25,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-
-.sisyphus
