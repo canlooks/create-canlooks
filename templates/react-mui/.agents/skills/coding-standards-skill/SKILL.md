@@ -133,6 +133,8 @@ export const Example = memo(() => {
 ```
 
 - Put hooks and store reads near the top of the component body.
+- When a component needs a loading or pending state, use React's `useTransition` as the default and drive the UI from `isPending`; do not hand-roll equivalent loading state with `useState`, `useReducer`, or store flags unless `useTransition` cannot represent the required lifecycle.
+- When component functionality requires optimistic updates with rollback, use React's `useOptimistic` as the default; do not hand-roll optimistic state copies or rollback bookkeeping unless `useOptimistic` cannot represent the required behavior.
 - Give event handlers defined inside components the `Handler` suffix, such as `closeHandler` or `submitHandler`.
 - Keep local helper components as file-local consts or functions when they are implementation details.
 - Do not use `React.FC`; type props inline or with a nearby type when useful.
