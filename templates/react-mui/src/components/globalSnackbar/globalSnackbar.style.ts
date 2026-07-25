@@ -2,7 +2,7 @@ import {css} from '@emotion/react'
 
 import {defineCss} from '@/lib/style'
 
-export const style = defineCss(({zIndex}) => css`
+export const style = defineCss(({palette: {common}, zIndex}) => css`
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -37,5 +37,9 @@ export const style = defineCss(({zIndex}) => css`
         align-items: center;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.36);
         width: 100%;
+
+        &.MuiAlert-filled {
+            color: ${common.white};
+        }
     }
 `)
