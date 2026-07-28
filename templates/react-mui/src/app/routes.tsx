@@ -1,6 +1,13 @@
-import {RouteItem} from '@canlooks/react-router'
+import {Redirect, RouteItem} from '@canlooks/react-router'
 import {Index} from '@/views/index'
 
 export const routeEntry: RouteItem = {
-    page: <Index/>
+    children: {
+        '#index': {
+            page: <Index/>
+        },
+        '**': {
+            page: <Redirect to="/"/>
+        }
+    }
 }
