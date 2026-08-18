@@ -4,7 +4,7 @@ import {memo, type ComponentProps, type ReactElement, type SyntheticEvent} from 
 
 import {Alert, AlertTitle, Collapse, Grow, Snackbar, type SnackbarCloseReason} from '@mui/material'
 
-import {useSnackbarStore} from '@/stores/snackbar'
+import {useSnackbarStore} from '@/stores/snackbar.store'
 
 import {style} from './globalSnackbar.style'
 
