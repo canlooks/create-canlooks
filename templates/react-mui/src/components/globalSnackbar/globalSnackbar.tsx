@@ -1,8 +1,9 @@
+
 import {memo, type ComponentProps, type ReactElement, type SyntheticEvent} from 'react'
 
-import {Alert, Collapse, Grow, Snackbar, type SnackbarCloseReason} from '@mui/material'
+import {Alert, AlertTitle, Collapse, Grow, Snackbar, type SnackbarCloseReason} from '@mui/material'
 
-import {useSnackbarStore} from '@/stores/snackbar.store'
+import {useSnackbarStore} from '@/stores/snackbar'
 
 import {style} from './globalSnackbar.style'
 
@@ -92,6 +93,7 @@ export const GlobalSnackbar = memo(() => {
                         variant="filled"
                         onClose={() => alertCloseHandler(item.key)}
                     >
+                        {item.title && <AlertTitle>{item.title}</AlertTitle>}
                         {item.message}
                     </Alert>
                 </Snackbar>

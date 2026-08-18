@@ -6,6 +6,7 @@ export type SnackbarQueueItem = {
     message: string
     open: boolean
     severity: AlertColor
+    title?: string
 }
 
 const maxSnackbarCount = 5
@@ -17,7 +18,7 @@ class SnackbarStore {
     key = 0
     items: SnackbarQueueItem[] = []
 
-    show(message: string, severity: AlertColor) {
+    show(message: string, severity: AlertColor, title?: string) {
         this.set(({items, key}) => {
             const nextKey = key + 1
             const openItems = items.filter(({open}) => open)
@@ -38,23 +39,24 @@ class SnackbarStore {
                         key: nextKey,
                         message,
                         open: true,
-                        severity
+                        severity,
+                        title
                     }
                 ]
             }
         })
     }
 
-    showError(message: string) {
-        this.show(message, 'error')
+    showError(message: string, title?: string) {
+        this.show(message, 'error', title)
     }
 
-    showSuccess(message: string) {
-        this.show(message, 'success')
+    showSuccess(message: string, title?: string) {
+        this.show(message, 'success', title)
     }
 
-    showWarning(message: string) {
-        this.show(message, 'warning')
+    showWarning(message: string, title?: string) {
+        this.show(message, 'warning', title)
     }
 
     close(key: number) {
@@ -79,26 +81,26 @@ class SnackbarStore {
 
 export const useSnackbarStore = createStore(SnackbarStore)
 
-export function showSnackbarError(message: string) {
+export function showSnackbarError(message: string, title?: string) {
     if (typeof window === 'undefined') {
         return
     }
 
-    useSnackbarStore.getState().showError(message || '发生错误')
+    useSnackbarStore.getState().showError(message || '发生错误', title)
 }
 
-export function showSnackbarSuccess(message: string) {
+export function showSnackbarSuccess(message: string, title?: string) {
     if (typeof window === 'undefined') {
         return
     }
 
-    useSnackbarStore.getState().showSuccess(message || '操作成功')
+    useSnackbarStore.getState().showSuccess(message || '操作成功', title)
 }
 
-export function showSnackbarWarning(message: string) {
+export function showSnackbarWarning(message: string, title?: string) {
     if (typeof window === 'undefined') {
         return
     }
 
-    useSnackbarStore.getState().showWarning(message || '请注意')
+    useSnackbarStore.getState().showWarning(message || '请注意', title)
 }

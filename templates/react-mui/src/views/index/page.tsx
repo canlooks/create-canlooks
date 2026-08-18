@@ -1,9 +1,9 @@
 import {memo} from 'react'
 import {Stack, Typography} from '@mui/material'
-import {style} from './index.style'
+import {style} from './page.style'
 import {Example} from '@/components/example/example'
 
-export const Index = memo(() => {
+export const IndexPage = memo(() => {
     return (
         <Stack css={style}>
             <Stack className="wrap" spacing={3}>

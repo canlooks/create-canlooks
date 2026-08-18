@@ -1,7 +1,7 @@
 import {Theme, useTheme} from '@mui/material'
 import {useMemo} from 'react'
 import Color from 'color'
-import {customColors, useColorContext} from '@/providers/theme.provider'
+import {customColors, useColorContext} from '@/app/theme.provider'
 
 export function alpha(color: string, value: number) {
     return Color(color).alpha(value).string()
