@@ -58,8 +58,8 @@ Keep the project organized around these owners:
     │   └── <domain>.d.ts
     └── views/
         └── <viewName>/
-            ├── <viewName>.tsx
-            └── <viewName>.style.ts
+            ├── page.tsx
+            └── page.style.ts
 ```
 
 Add new code under the existing owner instead of creating new top-level folders unless the feature clearly needs a new domain boundary.
@@ -139,6 +139,14 @@ export const Example = memo(() => {
 - Keep local helper components as file-local consts or functions when they are implementation details.
 - Do not use `React.FC`; type props inline or with a nearby type when useful.
 - Use `cloneRef` from `src/lib/ref.ts` when merging refs. Use `forwardRef` only when a component deliberately exposes a ref API.
+
+## Component Decomposition and Placement
+
+- When a page contains substantial content, do not keep all markup and logic in one page component. Split it into small, focused components by functional module and page layout.
+- Extract relatively independent features, visually separate cards or sections, click-switched tab panels, subpages, modals/dialogs, and similar units into their own components. This keeps responsibilities clear and limits coupling between parts of the page.
+- For page-specific components, prefer a sibling file in the same directory as the owning page. For example, a header for `src/views/<viewName>/page.tsx` should live in `src/views/<viewName>/pageHeader.tsx` (with a co-located `pageHeader.style.ts` when it has styles).
+- When a component is shared across pages or is intentionally defined as a generic reusable component, place it under `src/components/<componentName>/` with its implementation and co-located style file.
+
 
 ## Styling
 

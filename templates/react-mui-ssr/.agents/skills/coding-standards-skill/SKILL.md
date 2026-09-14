@@ -154,6 +154,13 @@ export default AppLayout
 - Components in `src/components/` MUST use `export const X = memo(...)` pattern.
 - **Ref passing**: Components wrapping a single JSX element pass `ref` through `{...props}` — do NOT use `forwardRef`. Simply extend `ComponentProps<'div'>` (or the appropriate element) and spread `{...props}` to the root element. `forwardRef` is reserved ONLY for components that expose imperative APIs via `useImperativeHandle`.
 
+#### Component Decomposition and Placement
+
+- When a page contains substantial content, do not keep all markup and logic in one page component. Split it into small, focused components by functional module and page layout.
+- Extract relatively independent features, visually separate cards or sections, click-switched tab panels, subpages, modals/dialogs, and similar units into their own components. This keeps responsibilities clear and limits coupling between parts of the page.
+- For page-specific components, prefer a sibling file in the same directory as the owning page. For example, a header for `src/app/page.tsx` should live in `src/app/pageHeader.tsx` (with a co-located `pageHeader.style.ts` when it has styles).
+- When a component is shared across pages or is intentionally defined as a generic reusable component, place it under `src/components/<componentName>/` with its implementation and co-located style file.
+
 ### 2.2 Import Order
 
 Imports MUST follow this order with a blank line between groups:
