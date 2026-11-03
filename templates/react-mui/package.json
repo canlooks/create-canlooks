@@ -7,9 +7,9 @@
     "test": "npx ts-node test/test.ts"
   },
   "devDependencies": {
-    "@canlooks/ajax": "^5.0.5",
+    "@canlooks/ajax": "^5.1.0",
     "@canlooks/react-router": "^2.0.9",
-    "@canlooks/statio": "^1.0.4",
+    "@canlooks/statio": "^1.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@eslint/js": "^9.39.5",
