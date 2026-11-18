@@ -1,13 +1,16 @@
 import {routeEntry} from './routes'
 import {ThemeProvider} from './theme.provider'
 import {Router} from '@canlooks/react-router'
-import {GlobalSnackbar} from '@/components/globalSnackbar/globalSnackbar'
+import {Toaster} from '@/components/ui/sonner'
+import {useAppearanceStore} from '@/stores/appearance.store'
 
 export function App() {
+    const {theme} = useAppearanceStore('theme')
+
     return (
         <ThemeProvider>
             <Router entry={routeEntry}/>
-            <GlobalSnackbar/>
+            <Toaster theme={theme} position="top-center" visibleToasts={5} offset={16} expand closeButton richColors/>
         </ThemeProvider>
     )
 }

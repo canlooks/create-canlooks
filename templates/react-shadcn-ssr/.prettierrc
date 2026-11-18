@@ -1,0 +1,14 @@
+{
+  "printWidth": 150,
+  "tabWidth": 4,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": false,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "singleAttributePerLine": true,
+  "objectWrap": "preserve"
+}

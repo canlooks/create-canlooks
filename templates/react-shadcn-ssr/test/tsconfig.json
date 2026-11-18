@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "noUnusedLocals": false,
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "**/*"
+  ]
+}

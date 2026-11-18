@@ -14,7 +14,8 @@ const choices = [
     'react-mui-ssr',
     'react-electron',
     'react-native',
-    'react-shadcn'
+    'react-shadcn',
+    'react-shadcn-ssr'
 ] as const
 
 console.log('Hi. Canlooks CLI. ૮(˶ᵔ ᵕ ᵔ˶)ა\n')

@@ -14,7 +14,7 @@ The `react-shadcn` template uses Vite 8, React 19, TypeScript 6, shadcn/ui, and 
 | `src/main.tsx` | Import the global stylesheet and mount the named `App` export into `#app`. |
 | `src/app/` | Compose the application, define routes, and apply the theme. |
 | `src/views/<viewName>/page.tsx` | Export the named, memoized route target. Keep page-specific sections beside the page. |
-| `src/components/<componentName>/<componentName>.tsx` | Implement reusable application components such as `Example` and `GlobalSnackbar`. |
+| `src/components/<componentName>/<componentName>.tsx` | Implement reusable application components such as `Example`. |
 | `src/components/ui/` | Own the shadcn/ui primitive source installed by the registry. Keep its filenames and public exports compatible with registry imports. |
 | `src/stores/<domain>.store.ts` | Own shared state and its actions. |
 | `src/services/<domain>.service.ts` | Define the HTTP endpoints for a domain. |
@@ -27,7 +27,7 @@ The `react-shadcn` template uses Vite 8, React 19, TypeScript 6, shadcn/ui, and 
 - Read store slices near the top of the component. Name local event handlers with a `Handler` suffix. Pass an existing store action directly when it already fits the event.
 - Use `useTransition` for pending UI and `useOptimistic` for optimistic updates with rollback when their lifecycles fit the action.
 - Split substantial page sections, dialogs, or tabs into focused components. Move a component to `src/components/` when it is shared across views.
-- Register views in the `RouteItem` tree in `src/app/routes.tsx`. Use `children` for nested routes. `src/app/app.tsx` mounts the `@canlooks/react-router` router and one `GlobalSnackbar` inside `ThemeProvider`.
+- Register views in the `RouteItem` tree in `src/app/routes.tsx`. Use `children` for nested routes. `src/app/app.tsx` mounts the `@canlooks/react-router` router and one Sonner `Toaster` inside `ThemeProvider`.
 - Keep static metadata such as the application title in `systemStore`. Use `cloneRef` from `@/lib/ref` when combining refs.
 
 ## shadcn/ui and styles
@@ -60,7 +60,7 @@ Merge conditional and caller-supplied utility classes with `cn`. Registry compon
 - `src/app/global.css` imports Tailwind and defines light tokens in `:root` and dark overrides in `.dark`. Map each new semantic color through `@theme inline`. For example, `--example` is mapped to `--color-example` and consumed as `text-example`. Pair surface and foreground tokens, such as `bg-card text-card-foreground`.
 - Use `useAppearanceStore` for theme, primary color, and font size. Its actions persist preferences with `@canlooks/statio`. `src/app/theme.provider.tsx` applies the root theme class, the adjusted `--primary`, a contrasting `--primary-foreground`, and the normalized root font size. Dialogs and other portals inherit these values from the document.
 - Global font families, radii, page defaults, and the scrollbar utility live in the stylesheet. Use the Tailwind spacing and typography scales for component sizes that follow the root font size.
-- Use `showSnackbarError`, `showSnackbarSuccess`, or `showSnackbarWarning` from `@/stores/snackbar.store` for notifications, including from non-component code. `GlobalSnackbar` displays the store's queue through the local Sonner `Toaster`. Use the existing host for all routes.
+- Import `toast` from `sonner` in event handlers or services. Call `toast.success(message)`, `toast.error(message)`, or `toast.warning(message)` to notify the user. Sonner manages the queue and returns an ID that can be passed to `toast.dismiss(id)`.
 
 ## State, services, and types
 
