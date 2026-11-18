@@ -16,7 +16,7 @@
     "@canlooks/ajax": "^5.1.0",
     "@canlooks/statio": "^1.1.0",
     "@eslint/js": "^9.39.5",
-    "@fontsource/roboto": "^5.3.0",
+    "@fontsource-variable/geist": "^5.3.0",
     "@tailwindcss/postcss": "^4.3.5",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",

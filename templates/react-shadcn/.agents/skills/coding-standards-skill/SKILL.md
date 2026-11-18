@@ -9,6 +9,8 @@ The `react-shadcn` template uses Vite 8, React 19, TypeScript 6, shadcn/ui, and 
 
 ## File placement
 
+Prefer camelCase for project-defined file and directory names, as in `userProfile/userProfile.tsx`. Preserve names required by the framework, tooling, or shadcn/ui registry.
+
 | Path | Responsibility |
 | --- | --- |
 | `src/main.tsx` | Import the global stylesheet and mount the named `App` export into `#app`. |
@@ -19,7 +21,7 @@ The `react-shadcn` template uses Vite 8, React 19, TypeScript 6, shadcn/ui, and 
 | `src/stores/<domain>.store.ts` | Own shared state and its actions. |
 | `src/services/<domain>.service.ts` | Define the HTTP endpoints for a domain. |
 | `src/types/<domain>.d.ts` | Declare ambient types used across domains. Keep component props and store-specific types near their owner. |
-| `src/lib/` | Share class-name and ref helpers. |
+| `src/lib/` | Share utilities such as class-name and ref helpers. When the same logic appears in multiple places or multiple callers need the same utility, extract it into a shared function or class in `src/lib/` and use it at each call site. |
 
 ## React components and routing
 
@@ -66,6 +68,7 @@ Merge conditional and caller-supplied utility classes with `cn`. Registry compon
 
 - Use `createStore` from `@canlooks/statio` for shared state. Follow `example.store.ts` for the store class, `SetStateMethod` constructor, and `use<Domain>Store` export. Subscribe to explicit keys, such as `useExampleStore('msg', 'sayHello')`. Use local React state for component-only interactions.
 - Access a store outside React through `use<Domain>Store.getState()`. Guard browser-dependent helpers when they can run in tests.
+- When multiple components need the same data, call the domain service from a shared store action. For identical requests, reuse the in-flight request or the stored result while it is fresh. Have each component subscribe to the data in the store.
 - Extend `RootService` from `./root.service` in domain services. Follow `example.service.ts` for the `@Config` base URL and static methods. Keep shared headers and interceptors in `root.service.ts`.
 - `src/services/urls.ts` obtains the API root from `import.meta.env.VITE_API_URL`. Define client environment values in `env/.env` with the `VITE_` prefix and type them in `src/types/env.d.ts`.
 - Ambient declarations in `src/types/*.d.ts` are available without imports. Keep exported domain-specific types beside their store or service when callers depend on that API.

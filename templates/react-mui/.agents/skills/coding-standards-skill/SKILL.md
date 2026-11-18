@@ -231,6 +231,7 @@ export const useExampleStore = createStore(ExampleStore)
 - Use `storage()` from `@canlooks/statio` for persisted stores, as in `appearance.store.ts`.
 - Use `useStore.getState()` in non-component helpers only when needed. Guard DOM or storage access when the helper can run in tests or other non-browser tooling.
 - Use local React state for component-only UI state; use stores for shared state.
+- When multiple components need the same data, call the domain service from a shared store action. For identical requests, reuse the in-flight request or the stored result while it is fresh. Have each component subscribe to the data in the store.
 - Keep `system.store.ts` as a plain static object for application metadata, not a statio store.
 
 ## Services And HTTP
@@ -292,7 +293,7 @@ declare namespace Example {
 
 ## Utility Modules
 
-Use the existing helpers instead of recreating them.
+Reuse existing helpers. When the same logic appears in multiple places or multiple callers need the same utility, extract it into a shared function or class in `src/lib/` and use it at each call site.
 
 - `src/lib/classNames.ts`: use `clsx(...)` for conditional class-name composition.
 - `src/lib/ref.ts`: use `cloneRef(...)` for merging callback and object refs.

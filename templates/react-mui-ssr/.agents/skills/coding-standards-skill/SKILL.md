@@ -62,14 +62,14 @@ The project MUST maintain this directory layout:
 
 - **Next.js App Router routing** — routes are defined by the file system under `src/app/`. Each route folder has a `page.tsx`. Layouts use `layout.tsx`.
 - **One component per directory** — each component lives in its own subdirectory under `src/components/` with co-located `.tsx` and `.style.ts` files. NEVER place multiple components in one directory.
-- **Source file names use camelCase**. For filenames with compound extensions, apply camelCase to the basename before the first dot: `userInfo.style.ts`, `authSession.provider.tsx`, `userTypes.d.ts`.
+- **Source file names use camelCase**. Prefer camelCase for project-defined directory names as well. For filenames with compound extensions, apply camelCase to the basename before the first dot: `userInfo.style.ts`, `authSession.provider.tsx`, `userTypes.d.ts`.
 - Framework- or tool-mandated fixed filenames keep their required names: `page.tsx`, `layout.tsx`, `page.style.ts`, `next.config.ts`, `eslint.config.mts`, `tsconfig.json`, `.env`, etc.
 - **components/** uses camelCase subdirectory names matching the component file basename and PascalCase component name (e.g., `userInfo/` → `userInfo.tsx` → `UserInfo` component).
 - **providers/** contains `theme.provider.tsx` (MUI theme wrapper) and `global.style.ts` (CSS reset).
 - **services/** uses class-based decorator pattern — each domain service extends `RootService`. Service files use camelCase.
 - **stores/** uses class-based stores with `createStore()` — one store per file. Store files use camelCase.
 - **types/** contains `.d.ts` files with `namespace` declarations — NEVER import from `src/types/`.
-- **lib/** contains shared utilities: `style.ts` provides `defineCss()`, `defaultFontFamily`, and `defaultMonospaceFontFamily`.
+- **lib/** contains shared utilities: `style.ts` provides `defineCss()`, `defaultFontFamily`, and `defaultMonospaceFontFamily`. When the same logic appears in multiple places or multiple callers need the same utility, extract it into a shared function or class in `src/lib/` and use it at each call site.
 - Server compiles to CommonJS via its own `tsconfig.json`. Compiled output (`server/*.js`, `server/*.d.ts`) is gitignored.
 - Config files at the root use `.mts` extension (ESM TypeScript) — `next.config.ts` is the exception, Next.js expects `.ts`.
 - `next-env.d.ts` is auto-generated — never manually edit.
@@ -404,6 +404,7 @@ const exampleStore = useExampleStore('msg', 'updateMsg')
 - Store file names use **camelCase**: `userStore.ts`, `dataStore.ts`.
 - NEVER use `useState` or `useReducer` for global/shared state — use statio stores.
 - For truly local component-only state, `useState` is acceptable.
+- When multiple components need the same data, call the domain service from a shared store action. For identical requests, reuse the in-flight request or the stored result while it is fresh. Have each component subscribe to the data in the store.
 - When consuming a store in a component, explicitly list the properties/methods you need as string arguments to `useStore(...)`.
 
 ### 2.7 URLs / Environment Variables
