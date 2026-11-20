@@ -34,6 +34,8 @@ Prefer camelCase for project-defined file and directory names, as in `userProfil
 
 ## shadcn/ui and styles
 
+Before creating a page or adding new content to an existing page, check the official shadcn/ui documentation. If an official component or a recommended implementation pattern meets the requirement, prefer it over a custom local implementation.
+
 Run `npx shadcn add <component>` from the project root to install a primitive with its dependencies. `components.json` configures the New York style, TypeScript client components, Lucide icons, and aliases. Consult the checked-in primitive and the official registry for its API. [shadcn/ui component documentation](https://ui.shadcn.com/llms.txt)
 
 Use native elements and Tailwind utilities for layout and typography. Import primitives and apply semantic color classes as in the example component.
@@ -56,6 +58,11 @@ export const Example = memo(() => {
 ```
 
 Merge conditional and caller-supplied utility classes with `cn`. Registry components import it from the `cn` package. Application code can also use the re-export from `@/lib/classNames`. Put the caller's classes last so they can override conflicting utilities. Follow `buttonVariants` in `src/components/ui/button.tsx` for components with multiple sizes or variants. [shadcn/ui class merging](https://ui.shadcn.com/docs/changelog/2026-09-cn)
+
+### Dialogs
+
+- Control every `Dialog` from its parent with `open` and `onOpenChange`, for example `<Dialog open={open} onOpenChange={setOpen}>`. Close it by setting `open` to `false` and keep the dialog root mounted after dismissal.
+- Keep `DialogContent` and the data it displays available throughout the exit animation. Let Radix finish animating the content and overlay. For edit dialogs, initialize the form from the current selection when opening it so canceled edits are discarded on the next open.
 
 ## Theme and notifications
 
